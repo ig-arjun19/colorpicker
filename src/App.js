@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
-import './App.css';
-import './ColorPicker.css'; // Add this line
+import React, { useState } from "react";
+import "./App.css";
 
-import ColorPicker from './components/ColorPicker';
+const ColorPicker = () => {
+  const [selectedColor, setSelectedColor] = useState("#3498db");
 
-const App = () => {
-  const colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FFC0CB", "#40E0D0", "#FFA500", "#800080", "#FFB6C1", "#006400"];
-  const [selectedColor, setSelectedColor] = useState('#FF5733');
-
-  const handleColorChange = (color) => {
-    setSelectedColor(color);
+  const handleColorChange = (e) => {
+    setSelectedColor(e.target.value);
   };
 
   return (
-    <div className="App">
-      <h1>Color Picker App</h1>
-      <ColorPicker colors={colors} onColorChange={handleColorChange} />
-      <div className="selected-color">
-        Selected Color: <div className="result-box" style={{ backgroundColor: selectedColor }}></div>
-      </div>
+    <div className="color-picker" style={{ backgroundColor: selectedColor }}>
+      <h1>Color Picker</h1>
+      <input
+        type="color"
+        value={selectedColor}
+        onChange={handleColorChange}
+        className="color-input"
+      />
+      <p>Selected Color: {selectedColor}</p>
     </div>
   );
 };
 
-export default App;
+export default ColorPicker;
